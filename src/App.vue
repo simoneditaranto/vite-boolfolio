@@ -29,12 +29,8 @@ export default {
 <template>
 
    <AppHeader></AppHeader>
-   
-   <div class="container d-flex">
       
-    <router-view></router-view>
-
-   </div>
+   <router-view></router-view>
 
    <AppFooter></AppFooter>
 

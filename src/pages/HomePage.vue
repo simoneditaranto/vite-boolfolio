@@ -1,7 +1,7 @@
 <script>
 
-// import AppMain from './components/AppMain.vue';
 import AppProject from '../components/AppProject.vue';
+import AppProfile from '../components/AppProfile.vue';
 
 import axios from 'axios';
 
@@ -10,8 +10,8 @@ export default {
     name: 'HomePage',
 
    components: { 
-      // AppMain,
       AppProject,
+      AppProfile,
    },
 
     data() {
@@ -89,57 +89,60 @@ export default {
 
 <template>
 
-   <!-- <AppMain></AppMain> -->
-   <div class="d-flex flex-column container py-5">
+   <div id="home" class="container py-5 d-flex">
+        <AppProfile></AppProfile>
 
-        <h1 class="text-center text-uppercase fw-bold">I nostri progetti</h1>
+        <div class="my-projects">
 
-        <div v-if="!isLoading">
-            <div class="container d-flex justify-content-center">
-                    <AppProject 
-                    v-for="currentProject in projects"
-                    :key="currentProject.slug"
-                    :project="currentProject"
-                    :projectName="currentProject.name"
-                    :projectDescription="currentProject.description"
-                    :projectImage="currentProject.project_image"
-                    :projectDate="currentProject.project_date"
-                    :projectLink="currentProject.link_github"
-                    :projectTechnolgies="currentProject.technologies"
-                    :projectType="currentProject.type.title"
-                    >
-                    </AppProject>
+            <!-- <h1 class="text-center text-uppercase fw-bold">I miei progetti</h1> -->
+            <small>Projects</small>
+    
+            <div v-if="!isLoading">
+                <div class="d-flex flex-wrap">
+                        <AppProject 
+                        v-for="currentProject in projects"
+                        :key="currentProject.slug"
+                        :project="currentProject"
+                        :projectName="currentProject.name"
+                        :projectDescription="currentProject.description"
+                        :projectImage="currentProject.project_image"
+                        :projectDate="currentProject.project_date"
+                        :projectLink="currentProject.link_github"
+                        :projectTechnolgies="currentProject.technologies"
+                        :projectType="currentProject.type.title"
+                        >
+                        </AppProject>
+                </div>
+    
+                <div class="pages">
+                    <ul>
+                        <li v-html="apiLinks[0].label" 
+                            :class="apiPageNumber == 1 ? 'none' : ''"
+                            @click="changeApiPage(apiLinks[0].label)"
+                            >
+                        </li>
+                        <li 
+                            v-for="link in apiLinks.slice(1, -1)"
+                            v-html="link.label" 
+                            @click="changeApiPage(link.label)" 
+                            v-bind:class="{ 'active' : link.label == apiPageNumber }"
+                            >
+                        </li>
+                        <li v-html="apiLinks[apiLinks.length - 1].label" 
+                            :class="apiPageNumber == apiLinks.length - 2 ? 'none' : ''"
+                            @click="changeApiPage(apiLinks[apiLinks.length - 1].label)"
+                            >
+                        </li>
+                    </ul>
+                </div>
+    
             </div>
-
-            <div class="pages">
-                <ul class="">
-                    <li v-html="apiLinks[0].label" 
-                        :class="apiPageNumber == 1 ? 'none' : ''"
-                        @click="changeApiPage(apiLinks[0].label)"
-                        >
-                    </li>
-                    <li 
-                        v-for="link in apiLinks.slice(1, -1)"
-                        v-html="link.label" 
-                        @click="changeApiPage(link.label)" 
-                        v-bind:class="{ 'active' : link.label == apiPageNumber }"
-                        >
-                    </li>
-                    <li v-html="apiLinks[apiLinks.length - 1].label" 
-                        :class="apiPageNumber == apiLinks.length - 2 ? 'none' : ''"
-                        @click="changeApiPage(apiLinks[apiLinks.length - 1].label)"
-                        >
-                    </li>
-                </ul>
+            <div v-else>
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
-
         </div>
-        <div v-else>
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-
    </div>
    
 
@@ -147,30 +150,52 @@ export default {
 </template>
 
 <style lang="scss">
-.pages {
 
-   ul {
-      display: flex;
-      gap: 10px;
+#home{
+    gap: 50px;
 
-      list-style-type: none;
+    .my-projects{
+        
 
-      li {
-         padding: 8px;
+        small{
+            
+        }
 
-         transition: all .3s ease;
+        .d-flex{
+            gap: 15px;
 
-         cursor: pointer;
+            margin-bottom: 20px;
+        }
 
-         &:hover, &.active{
-            background-color: rgba(255, 255, 255, 0.4);
-         }
+        .pages {
+        
+           ul {
+              display: flex;
+              gap: 10px;
+        
+              list-style-type: none;
+        
+              li {
+                 padding: 8px;
+        
+                 transition: all .3s ease;
+        
+                 cursor: pointer;
+        
+                 &:hover, &.active{
+                    background-color: rgba(255, 255, 255, 0.4);
+                 }
+        
+                 &.none {
+                    display: none;
+                 }
+              }
+           }
+           
+        }
 
-         &.none {
-            display: none;
-         }
-      }
-   }
-   
+    }
+
 }
+
 </style>

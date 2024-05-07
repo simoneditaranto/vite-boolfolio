@@ -36,47 +36,67 @@ export default {
 
 <template>
 
-    <div class="container py-5">
-        <div class="card text-center">
-            <img :src="this.baseApiUrl + projectImage" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title fw-bold fs-1">{{ projectName }}</h5>
+    <!-- <div class="card text-center">
+        <img :src="this.baseApiUrl + projectImage" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title fw-bold fs-1">{{ projectName }}</h5>
 
-                <div class="desc-container">
-                    <p class="card-text">{{ projectDescription }}</p>
-                </div>
-
-                <div class="card-date">{{ formatDate(projectDate) }}</div>
-                <div class="card-link text-info">{{ projectLink }}</div>
-                <div class="card-tech text-danger" v-for="tech in projectTechnolgies">{{ tech.title }}</div>
-                <div class="card-type text-success">{{ projectType }}</div>
-                <router-link :to="{name: 'single-project', params: {slug: project.slug}}" class="btn btn-primary">Visualizza</router-link>
+            <div class="desc-container">
+                <p class="card-text">{{ projectDescription }}</p>
             </div>
+
+            <div class="card-date">{{ formatDate(projectDate) }}</div>
+            <div class="card-link text-info">{{ projectLink }}</div>
+            <div class="card-tech text-danger" v-for="tech in projectTechnolgies">{{ tech.title }}</div>
+            <div class="card-type text-success">{{ projectType }}</div>
+            <router-link :to="{name: 'single-project', params: {slug: project.slug}}" class="btn btn-primary">Visualizza</router-link>
+        </div>
+    </div> -->
+
+    <div class="project-cont">
+        <img :src="this.baseApiUrl + projectImage" alt="...">
+
+        <div class="view-project">
+            <router-link :to="{name: 'single-project', params: {slug: project.slug}}" class="btn btn-primary">Visualizza</router-link>
         </div>
     </div>
+    
 
 
 </template>
 
 <style lang="scss">
 
+.project-cont{
+    position: relative;
 
-.card {
+    width: calc(100% / 2 - 15px / 2 * 1);
 
-    .card-body{
+    &:hover .view-project{
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        .desc-container {
-            height: 200px;
-
-            overflow: hidden;
-
-            .card-text{
-                height: 100%;
-
-                overflow-y: auto;
-            }
-        }
+        cursor: pointer;
     }
+
+    img{
+        width: 100%;
+    }
+
+    .view-project{
+        display: none;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
 }
 
 </style>
