@@ -44,12 +44,12 @@ export default {
 
         <div class="mb-3">
             <label for="name" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="name" name="name" v-model="formData.name" required>
+            <input type="text" class="form-control" id="name" name="name" v-model="formData.name" >
         </div>
 
         <div class="mb-3">
             <label for="address" class="form-label">Indirizzo email</label>
-            <input type="email" class="form-control" id="address" name="address" aria-describedby="emailHelp" v-model="formData.address" required>
+            <input type="email" class="form-control" id="address" name="address" aria-describedby="emailHelp" v-model="formData.address" >
             <div id="emailHelp" class="form-text">Non condivideremo la tua mail con terzi.</div>
         </div>
 

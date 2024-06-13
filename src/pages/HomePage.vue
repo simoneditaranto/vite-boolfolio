@@ -88,8 +88,9 @@ export default {
 </script>
 
 <template>
+    
+    <div id="home" class="container py-5 d-flex">
 
-   <div id="home" class="container py-5 d-flex">
         <AppProfile></AppProfile>
 
         <div class="my-projects">
@@ -144,8 +145,6 @@ export default {
             </div>
         </div>
    </div>
-   
-
 
 </template>
 
