@@ -5,16 +5,13 @@ export default {
     name: 'MyInfo',
 
 }
-
-
-
 </script>
 
 <template>
      
-    <div class="container">
+    <div id="my-info" >
 
-        <div id="my-info">
+        <div class="container">
             
             <div class="my-photo">
 
@@ -25,25 +22,27 @@ export default {
 
         </div>
 
-</div>
+    </div>
 
 </template>
 
 <style scoped lang="scss">
+@use '../styles/mixins' as *;
 
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#my-info{
+    @include centered;
     
-    #my-info{
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    border: 2px dotted red;
+
+    .container{
         display: flex;
         align-items: center;
         gap: 30px;
 
-        width: 70%;
-
-        border: 2px dotted red;
+        width: 50%;
     
         .my-photo {
             background-color: gold;

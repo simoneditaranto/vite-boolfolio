@@ -71,9 +71,17 @@ export default {
 
             <div class="skills-container">
 
-                <div class="skill" v-for="skill in skills">
-    
-                </div>
+               <div class="skill" v-for="skill in skills">
+               
+                  <div class="skill-logo">
+                     <img :src="'/images/' + skill.logo" :alt="skill.name">
+                  </div>
+
+                  <div class="skill-name">
+                     {{ skill.name }}
+                  </div>
+                  
+               </div>
 
             </div>
 
@@ -86,6 +94,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@use '../styles/variables' as *;
 @use '../styles/mixins' as *;
 
 #my-skills{
@@ -100,16 +109,37 @@ export default {
 
         .skills-container {
             @include centered;
+            flex-wrap: wrap;
+            gap: $skills-gap;
 
             width: 50%;
 
             .skill{
-                width: 50px;
-                height: 50px;
-        
-                border: 1px solid grey;
-        
-                background-color: white;
+               @include centered;
+               flex-direction: column;
+
+               width: calc(100% / 6 - $skills-gap / 6 * 5);
+               aspect-ratio: 1 / 1;
+      
+               border: 1px solid grey;
+               border-radius: 15px;
+
+               transition: all .4s ease;
+
+               .skill-logo{
+                  width: 50px;
+                  height: 50px;
+
+                  img{
+                     width: 100%;
+                     height: 100%;
+                     object-fit: contain;
+                  }
+               }
+
+               &:hover{
+                  background-color: azure;
+               }
             }
 
         }

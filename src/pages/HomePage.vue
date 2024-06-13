@@ -1,7 +1,7 @@
 <script>
 
 import AppProject from '../components/AppProject.vue';
-import AppProfile from '../components/AppProfile.vue';
+// import AppProfile from '../components/AppProfile.vue';
 
 import axios from 'axios';
 
@@ -11,7 +11,7 @@ export default {
 
    components: { 
       AppProject,
-      AppProfile,
+    //   AppProfile,
    },
 
     data() {
@@ -89,17 +89,16 @@ export default {
 
 <template>
     
-    <div id="home" class="container py-5 d-flex">
+    <div id="home">
 
-        <AppProfile></AppProfile>
+        <div class="container">
 
-        <div class="my-projects">
-
-            <!-- <h1 class="text-center text-uppercase fw-bold">I miei progetti</h1> -->
-            <small>Projects</small>
+            <!-- <AppProfile></AppProfile> -->
     
+            <div class="title">Projects</div>
+            
             <div v-if="!isLoading">
-                <div class="d-flex flex-wrap">
+                <div class="my-projects">
                         <AppProject 
                         v-for="currentProject in projects"
                         :key="currentProject.slug"
@@ -143,53 +142,61 @@ export default {
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
+
+
         </div>
+
    </div>
 
 </template>
 
 <style lang="scss">
+@use '../styles/mixins' as *;
 
 #home{
-    gap: 50px;
+    border: 2px dotted blueviolet;
+    /* test */ 
 
-    .my-projects{
-        
+    padding-top: 50px;
+    padding-bottom: 50px;
 
-        small{
-            
-        }
+    .container{
 
-        .d-flex{
+        .my-projects{
+            display: flex;
+            flex-wrap: wrap;
             gap: 15px;
-
+            
             margin-bottom: 20px;
         }
 
         .pages {
         
-           ul {
-              display: flex;
-              gap: 10px;
+            ul {
+                @include centered;
+                gap: 10px;
+                margin: 0;
+                padding: 0;
+
         
-              list-style-type: none;
+                list-style-type: none;
+    
+                li {
+                    padding: 8px;
         
-              li {
-                 padding: 8px;
+                    transition: all .3s ease;
         
-                 transition: all .3s ease;
+                    cursor: pointer;
         
-                 cursor: pointer;
+                    &:hover, &.active{
+                        background-color: rgba(255, 255, 255, 0.4);
+                    }
         
-                 &:hover, &.active{
-                    background-color: rgba(255, 255, 255, 0.4);
-                 }
-        
-                 &.none {
-                    display: none;
-                 }
-              }
-           }
+                    &.none {
+                        display: none;
+                    }
+                }
+            }
            
         }
 
