@@ -98,10 +98,14 @@ export default {
 @use '../styles/mixins' as *;
 
 #my-skills{
-    border: 2px dotted red;
+   // background-color: #101010;
     /* test */
 
     .container{
+      background-color: #252525;
+      // color: white;
+      /* test */
+
         @include centered;
 
         padding-top: 50px;
@@ -138,7 +142,7 @@ export default {
                }
 
                &:hover{
-                  background-color: azure;
+                  background-color: $primaryColor;
                }
             }
 

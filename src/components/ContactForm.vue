@@ -58,12 +58,27 @@ export default {
             <label for="message">Messaggio</label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Invia</button>
+        <button type="submit" class="btn">Invia</button>
 
     </form>
 
 </template>
 
 <style lang="scss">
+@use '../styles/variables' as *;
+
+.btn{
+    background-color: $primaryColor;
+
+    color: white;
+
+    transition: all .3s ease;
+
+    &:hover{
+        scale: 1.1;
+
+        background-color: $primaryColor; 
+    }
+}
 
 </style>

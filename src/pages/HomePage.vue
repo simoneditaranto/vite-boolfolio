@@ -154,7 +154,8 @@ export default {
 @use '../styles/mixins' as *;
 
 #home{
-    border: 2px dotted blueviolet;
+    background-color: #101010;
+    color: white;
     /* test */ 
 
     padding-top: 50px;

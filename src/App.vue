@@ -34,20 +34,30 @@ export default {
 
 <template>
 
-   <AppHeader></AppHeader>
-   <AppJumbo></AppJumbo>
+   <div id="my-app">
 
-   <AppSkills></AppSkills>
-      
-   <router-view></router-view>
+      <AppHeader></AppHeader>
+      <AppJumbo></AppJumbo>
+   
+      <AppSkills></AppSkills>
+         
+      <router-view></router-view>
+   
+      <MyInfo></MyInfo>
+   
+      <AppFooter></AppFooter>
 
-   <MyInfo></MyInfo>
+   </div>
 
-   <AppFooter></AppFooter>
 
 
 </template>
 
 <style lang="scss">
+
+#my-app{
+   background-color: #101010;
+   color: white;
+}
 
 </style>
